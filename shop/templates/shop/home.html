@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Внутренняя империя — Магазин галстуков и бабочек</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; }
+        h1 { color: #2c3e50; }
+        .product { border-bottom: 1px solid #eee; padding: 20px 0; display: flex; align-items: center; }
+        .product img { width: 120px; height: auto; margin-right: 30px; border-radius: 8px; }
+        .product:last-child { border-bottom: none; }
+        .type { font-size: 0.9em; color: #888; }
+        .price { color: #000000; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Внутренняя империя</h1>
+        <p>Магазин галстуков и бабочек</p>
+        {% for product in products %}
+            <div class="product">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                {% endif %}
+                <div>
+                    <h2>{{ product.name }}</h2>
+                    <div class="type">{{ product.get_product_type_display }}</div>
+                    <div class="price">{{ product.price }} ₽</div>
+                    <p>{{ product.description }}</p>
+                </div>
+            </div>
+        {% empty %}
+            <p>Пока нет товаров.</p>
+        {% endfor %}
+    </div>
+</body>
+</html> 
