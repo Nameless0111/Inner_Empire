@@ -1,0 +1,46 @@
+{% extends 'shop/base.html' %}
+{% block title %}API Документация{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">API Эндпоинты</h1>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Товары:</strong> 
+                    <a href="/api/товары/" target="_blank">/api/товары/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Галстуки:</strong> 
+                    <a href="/api/товары/галстуки/" target="_blank">/api/товары/галстуки/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Бабочки:</strong> 
+                    <a href="/api/товары/бабочки/" target="_blank">/api/товары/бабочки/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Производители:</strong> 
+                    <a href="/api/производители/" target="_blank">/api/производители/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Категории:</strong> 
+                    <a href="/api/категории/" target="_blank">/api/категории/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Материалы:</strong> 
+                    <a href="/api/материалы/" target="_blank">/api/материалы/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Покупатели:</strong> 
+                    <a href="/api/покупатели/" target="_blank">/api/покупатели/</a>
+                </li>
+                <li class="list-group-item">
+                    <strong>Пользователи:</strong> 
+                    <a href="/api/пользователи/" target="_blank">/api/пользователи/</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %} 

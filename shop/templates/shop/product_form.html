@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+{% block title %}{% if edit %}Редактировать{% else %}Добавить{% endif %} товар{% endblock %}
+{% block content %}
+{% if user.is_staff or user.is_superuser %}
+<h2>{% if edit %}Редактировать{% else %}Добавить{% endif %} товар</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Сохранить</button>
+    <a href="{% url 'product_list' product_type=product_type %}" class="btn btn-secondary">Отмена</a>
+</form>
+{% else %}
+<div class="alert alert-danger mt-4">У вас нет прав для доступа к этой странице.</div>
+{% endif %}
+{% endblock %} 

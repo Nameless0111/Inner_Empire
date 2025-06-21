@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+{% block title %}Удалить товар{% endblock %}
+{% block content %}
+{% if user.is_staff or user.is_superuser %}
+<div class="alert alert-danger">
+    <h2>Удалить товар</h2>
+    <p>Вы уверены, что хотите удалить товар "{{ object.название }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'product_list' product_type=product_type %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% else %}
+<div class="alert alert-danger mt-4">У вас нет прав для доступа к этой странице.</div>
+{% endif %}
+{% endblock %} 

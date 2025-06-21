@@ -1,0 +1,46 @@
+{% extends 'shop/base.html' %}
+{% block title %}Профиль{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <h2 class="mb-4">Профиль пользователя</h2>
+    <ul class="list-group mb-4">
+      <li class="list-group-item"><strong>Логин:</strong> {{ user.username }}</li>
+      <li class="list-group-item"><strong>Имя:</strong> {{ user.first_name }}</li>
+      <li class="list-group-item"><strong>Фамилия:</strong> {{ user.last_name }}</li>
+      <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+    </ul>
+  </div>
+</div>
+{% if users %}
+<div class="container mt-5">
+  <h3>Список пользователей (только для админа)</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Логин</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Email</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for u in users %}
+      <tr>
+        <td>{{ u.id }}</td>
+        <td>{{ u.username }}</td>
+        <td>{{ u.first_name }}</td>
+        <td>{{ u.last_name }}</td>
+        <td>{{ u.email }}</td>
+        <td>
+          <a href="{% url 'user_edit' u.id %}" class="btn btn-sm btn-warning">Редактировать</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %} 

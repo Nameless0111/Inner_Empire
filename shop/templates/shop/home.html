@@ -1,38 +1,45 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Внутренняя империя — Магазин галстуков и бабочек</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; }
-        .container { max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; }
-        h1 { color: #2c3e50; }
-        .product { border-bottom: 1px solid #eee; padding: 20px 0; display: flex; align-items: center; }
-        .product img { width: 120px; height: auto; margin-right: 30px; border-radius: 8px; }
-        .product:last-child { border-bottom: none; }
-        .type { font-size: 0.9em; color: #888; }
-        .price { color: #000000; font-weight: bold; }
-    </style>
-</head>
-<body>
+{% extends 'shop/base.html' %}
+
+{% block title %}Внутренняя Империя - Главная{% endblock %}
+
+{% block content %}
+<div class="hero-section text-center py-5 mb-5">
+    <h1 class="display-4 mb-4">Внутренняя Империя</h1>
+    <p class="lead">Магазин элегантных аксессуаров</p>
+</div>
+
+<div class="collections-section mb-5">
     <div class="container">
-        <h1>Внутренняя империя</h1>
-        <p>Магазин галстуков и бабочек</p>
-        {% for product in products %}
-            <div class="product">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                {% endif %}
-                <div>
-                    <h2>{{ product.name }}</h2>
-                    <div class="type">{{ product.get_product_type_display }}</div>
-                    <div class="price">{{ product.price }} ₽</div>
-                    <p>{{ product.description }}</p>
+        <h2 class="text-center mb-5">Наши коллекции</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="collection-card tie-card">
+                    <div class="collection-content">
+                        <h3>Галстуки</h3>
+                        <p>Классические и современные модели для любого случая</p>
+                        <a href="/products/tie" class="btn btn-outline-light">Смотреть коллекцию</a>
+                    </div>
                 </div>
             </div>
-        {% empty %}
-            <p>Пока нет товаров.</p>
-        {% endfor %}
+            <div class="col-md-6 mb-4">
+                <div class="collection-card bowtie-card">
+                    <div class="collection-content">
+                        <h3>Бабочки</h3>
+                        <p>Элегантные аксессуары для особых мероприятий</p>
+                        <a href="/products/bowtie" class="btn btn-outline-light">Смотреть коллекцию</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
-</html> 
+</div>
+
+<div class="about-section text-center py-5">
+    <div class="container">
+        <div class="about-content">
+            <h2 class="mb-4">О нас</h2>
+            <p class="lead">Внутренняя Империя - это магазин, где каждый найдет свой стиль. Мы предлагаем только качественные аксессуары, которые подчеркнут вашу индивидуальность.</p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

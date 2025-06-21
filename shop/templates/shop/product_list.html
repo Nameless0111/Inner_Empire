@@ -1,0 +1,32 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{ product_type|title }}{% endblock %}
+{% block content %}
+<h1>{% if product_type == 'tie' %}Галстуки{% elif product_type == 'bowtie' %}Бабочки{% else %}Товары{% endif %}</h1>
+{% if user.is_staff or user.is_superuser %}
+<div class="mb-3">
+    <a href="{% url 'product_create' product_type=product_type %}" class="btn btn-success">Добавить товар</a>
+</div>
+{% endif %}
+<div class="row">
+    {% for товар in товары %}
+    <div class="col-md-4">
+        <div class="card mb-4">
+            {% if товар.изображение %}
+            <img src="{{ товар.изображение.url }}" class="card-img-top" alt="{{ товар.название }}" style="height: 200px; object-fit: cover;">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ товар.название }}</h5>
+                <p class="card-text">{{ товар.описание|truncatewords:15 }}</p>
+                <p class="card-text"><strong>Цена:</strong> {{ товар.цена }} ₽</p>
+                {% if user.is_staff or user.is_superuser %}
+                <a href="{% url 'product_update' product_type=product_type pk=товар.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                <a href="{% url 'product_delete' product_type=product_type pk=товар.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>Нет товаров в этой категории.</p>
+    {% endfor %}
+</div>
+{% endblock %} 
